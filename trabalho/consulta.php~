@@ -1,0 +1,28 @@
+<?php
+
+	require("conexao.php");
+	$sql = "select * from dados_usuario";
+	
+	$resultado = mysqli_query($conexao, $sql);
+	echo"<table border='1'>";
+	echo "<tr> 	<td> Id </td>
+					<td> Nome </td>
+					<td> Email </td>
+					<td> Tipo de conta </td>
+					<td> Mensalidade </td>
+					<td> Excluir </td>
+					<td> Alterar </td>
+			</tr>"
+			; 
+	while($row = @mysqli_fetch_array($resultado)) {
+		echo "<tr> 	<td>".$row["id"]."</td>
+					<td>".$row["nome"]."</td>
+					<td>".$row["email"]."</td>
+					<td>".$row["tipo_de_conta"]."</td>
+					<td>".$row["valor_mensalidade"]."</td>
+					<td><a href='excluir.php?id=".$row["id"]."'><img height='25px' width='25px' ></a> </td>
+					<td><a href='atualiza.php?id=".$row["id"]."'><img height='25px' width='25px' src='editar.ico'></a> </td>
+			</tr>"; 
+	}
+	@mysqli_close();	
+?>

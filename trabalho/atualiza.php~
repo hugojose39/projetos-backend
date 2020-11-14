@@ -1,0 +1,27 @@
+<?php
+	$id = $_GET['id'];
+	require("conexao.php");
+	
+	$sql = "SELECT * FROM dados_usuario Where id = ".$id;
+	$query = mysqli_query($conexao, $sql);
+	$consulta = mysqli_fetch_array($query);
+	
+	echo '<form name="form1" action="atualiza_db.php" method="POST">
+			<input type="hidden" name="id" value="'.$consulta["id"].'">
+		<table border="1">
+		<tr align="center">
+			<td colspan="2">Cadastro de Usuario</td>		
+		</tr>
+		<tr>
+			<td>Nome: </td>
+			<td><input type="text" name="nome" value='.$consulta["nome"].'></td>
+		</tr>
+		<tr align="center">
+			<td colspan="2"><input type="submit" value="Atualizar Cadastro"></td>
+		</tr>
+
+		</table>
+	</form>';	
+	mysqli_close();
+	//echo "Informação excluída com sucesso"; 
+?>
